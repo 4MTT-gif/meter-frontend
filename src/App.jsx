@@ -1,8 +1,8 @@
-﻿import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 const API_URL = import.meta.env.VITE_API_URL;
-console.log('API_URL degeri:', API_URL);
+
 
 function App() {
   const [devices, setDevices] = useState([]);
@@ -154,4 +154,5 @@ function DeviceCard({ device, onDelete, onAddReading }) {
 }
 
 export default App;
+
 
