@@ -1,16 +1,39 @@
-# React + Vite
+# Meter Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Cihaz/sayac kayit uygulamasinin arayuzu. React (Vite) ile yazildi, GitHub Pages uzerinde yayinlaniyor.
 
-Currently, two official plugins are available:
+## Canli Adres
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+https://4mtt-gif.github.io/meter-frontend/
 
-## React Compiler
+## Teknolojiler
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 18 + Vite
+- GitHub Actions (build + deploy)
+- GitHub Pages (hosting)
 
-## Expanding the ESLint configuration
+## Ozellikler
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- Cihaz ekleme, listeleme, silme
+- Cihaza okuma (deger) ekleme
+- Dogrulama: okuma degeri negatif olamaz
+
+## Yapilandirma
+
+Backend adresi koda gomulu degildir, build sirasinda environment variable ile verilir:
+
+- Yerel gelistirme: `.env` dosyasinda `VITE_API_URL`
+- Canli (GitHub Actions): repository secret olarak `VITE_API_URL`
+
+`.env.example` dosyasi ornek olarak repoda bulunur.
+
+Not: React client-side bir uygulama oldugu icin bu degisken build aninda pakete gomulur ve tarayicida gorunur. Public bir API adresi icin bu normaldir; gizli deger konulmaz.
+
+## Yerel Calistirma
+Uygulama http://localhost:5173 adresinde calisir. `.env` dosyasina backend adresini yazmak gerekir:## Deploy
+
+main branchine her push, GitHub Actions ile otomatik build + GitHub Pages deploy tetikler. Backend Render deploylarindan farkli olarak, burada deploy isini de dogrudan GitHub Actions yapar.
+
+## Bilinen Davranis
+
+Backend Render ucretsiz pakette calistigi icin, uzun sure kullanilmadiginda ilk istek ~50 saniye surebilir. Ayrica veriler kalici degildir (bkz. backend README).
