@@ -6,6 +6,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 
 function App() {
   const [devices, setDevices] = useState([]);
+  const [count, setCount] = useState(0);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -24,6 +25,11 @@ function App() {
       if (!res.ok) throw new Error("Cihazlar getirilemedi");
       const data = await res.json();
       setDevices(data);
+      const countRes = await fetch(`${API_URL}/api/devices/count`);
+      if (countRes.ok) {
+        const countData = await countRes.json();
+        setCount(countData.count);
+      }
     } catch (err) {
       setError(err.message);
     } finally {
@@ -80,7 +86,7 @@ function App() {
 
   return (
     <div className="container">
-      <h1>Cihaz / Sayac Takibi</h1>
+      <h1>Cihaz / Sayac Takibi ({count})</h1>
 
       <form onSubmit={addDevice} className="add-form">
         <input
@@ -154,5 +160,8 @@ function DeviceCard({ device, onDelete, onAddReading }) {
 }
 
 export default App;
+
+
+
 
 
